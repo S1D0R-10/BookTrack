@@ -4,29 +4,22 @@
 #include <string>
 #include <vector>
 
-
-#define MAX_BOOKS 1000
-#define MAX_TITLE_LENGTH 100
-#define MAX_AUTHOR_LENGTH 50
-
-typedef unsigned int BookID;
-typedef std::vector<std::string> StringList;
-typedef int YearType;
-
-
 namespace BookManager {
+
+    // Typedef for book ID
+    typedef int BookID;
     
+    // Maximum number of books in the database
+    const int MAX_BOOKS = 1000;
+    
+    // Book structure definition
     struct Book {
-        BookID id;
-        std::string title;
-        std::string author;
-        YearType yearOfPublication;
-
-        
-        Book(BookID _id = 0, const std::string& _title = "", 
-             const std::string& _author = "", YearType _year = 0)
-            : id(_id), title(_title), author(_author), yearOfPublication(_year) {}
+        BookID id;             // Unique identifier for the book
+        std::string title;     // Book title
+        std::string author;    // Book author
+        int yearOfPublication; // Year of publication
     };
-}
+    
+} // namespace BookManager
 
-#endif 
+#endif // DATA_STRUCTURES_HPP
