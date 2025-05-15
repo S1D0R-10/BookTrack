@@ -1,0 +1,101 @@
+ID,Title,Author,Year
+1,Pride and Prejudice,Jane Austen,1813
+2,Moby-Dick,Herman Melville,1851
+3,1984,George Orwell,1949
+4,To Kill a Mockingbird,Harper Lee,1960
+5,War and Peace,Leo Tolstoy,1869
+6,The Great Gatsby,F. Scott Fitzgerald,1925
+7,Crime and Punishment,Fyodor Dostoevsky,1866
+8,The Catcher in the Rye,J.D. Salinger,1951
+9,The Lord of the Rings,J.R.R. Tolkien,1954
+10,Jane Eyre,Charlotte Brontë,1847
+11,Wuthering Heights,Emily Brontë,1847
+12,The Hobbit,J.R.R. Tolkien,1937
+13,Brave New World,Aldous Huxley,1932
+14,Animal Farm,George Orwell,1945
+15,One Hundred Years of Solitude,Gabriel García Márquez,1967
+16,The Brothers Karamazov,Fyodor Dostoevsky,1880
+17,Les Misérables,Victor Hugo,1862
+18,The Picture of Dorian Gray,Oscar Wilde,1890
+19,The Divine Comedy,Dante Alighieri,1320
+20,A Tale of Two Cities,Charles Dickens,1859
+21,Great Expectations,Charles Dickens,1861
+22,Don Quixote,Miguel de Cervantes,1605
+23,The Count of Monte Cristo,Alexandre Dumas,1844
+24,Dracula,Bram Stoker,1897
+25,Frankenstein,Mary Shelley,1818
+26,The Grapes of Wrath,John Steinbeck,1939
+27,East of Eden,John Steinbeck,1952
+28,The Old Man and the Sea,Ernest Hemingway,1952
+29,A Farewell to Arms,Ernest Hemingway,1929
+30,The Sun Also Rises,Ernest Hemingway,1926
+31,Lolita,Vladimir Nabokov,1955
+32,Madame Bovary,Gustave Flaubert,1856
+33,The Sound and the Fury,William Faulkner,1929
+34,Catch-22,Joseph Heller,1961
+35,Slaughterhouse-Five,Kurt Vonnegut,1969
+36,Beloved,Toni Morrison,1987
+37,Invisible Man,Ralph Ellison,1952
+38,The Stranger,Albert Camus,1942
+39,The Trial,Franz Kafka,1925
+40,The Metamorphosis,Franz Kafka,1915
+41,Lord of the Flies,William Golding,1954
+42,Gone with the Wind,Margaret Mitchell,1936
+43,Rebecca,Daphne du Maurier,1938
+44,The Handmaid's Tale,Margaret Atwood,1985
+45,Dune,Frank Herbert,1965
+46,Fahrenheit 451,Ray Bradbury,1953
+47,The Hitchhiker's Guide to the Galaxy,Douglas Adams,1979
+48,The Name of the Rose,Umberto Eco,1980
+49,The Alchemist,Paulo Coelho,1988
+50,Memoirs of a Geisha,Arthur Golden,1997
+51,The Kite Runner,Khaled Hosseini,2003
+52,Life of Pi,Yann Martel,2001
+53,The Road,Cormac McCarthy,2006
+54,A Game of Thrones,George R.R. Martin,1996
+55,Harry Potter and the Philosopher's Stone,J.K. Rowling,1997
+56,Harry Potter and the Prisoner of Azkaban,J.K. Rowling,1999
+57,The Girl with the Dragon Tattoo,Stieg Larsson,2005
+58,The Hunger Games,Suzanne Collins,2008
+59,The Book Thief,Markus Zusak,2005
+60,The Fault in Our Stars,John Green,2012
+61,The Goldfinch,Donna Tartt,2013
+62,Ready Player One,Ernest Cline,2011
+63,The Martian,Andy Weir,2011
+64,Gone Girl,Gillian Flynn,2012
+65,The Nightingale,Kristin Hannah,2015
+66,The Underground Railroad,Colson Whitehead,2016
+67,Educated,Tara Westover,2018
+68,Circe,Madeline Miller,2018
+69,Where the Crawdads Sing,Delia Owens,2018
+70,Normal People,Sally Rooney,2018
+71,The Overstory,Richard Powers,2018
+72,Project Hail Mary,Andy Weir,2021
+73,The Midnight Library,Matt Haig,2020
+74,Klara and the Sun,Kazuo Ishiguro,2021
+75,"Tomorrow, and Tomorrow, and Tomorrow",Gabrielle Zevin,2022
+76,Demon Copperhead,Barbara Kingsolver,2022
+77,Lessons in Chemistry,Bonnie Garmus,2022
+78,Fourth Wing,Rebecca Yarros,2023
+79,Yellowface,R.F. Kuang,2023
+80,Iron Flame,Rebecca Yarros,2024
+81,The Covenant of Water,Abraham Verghese,2023
+82,"Black Leopard, Red Wolf",Marlon James,2019
+83,Pachinko,Min Jin Lee,2017
+84,The Seven Husbands of Evelyn Hugo,Taylor Jenkins Reid,2017
+85,The Silent Patient,Alex Michaelides,2019
+86,The Paris Library,Janet Skeslien Charles,2020
+87,Lessons,Ian McEwan,2022
+88,Shuggie Bain,Douglas Stuart,2020
+89,A Little Life,Hanya Yanagihara,2015
+90,Cloud Cuckoo Land,Anthony Doerr,2021
+91,Sea of Tranquility,Emily St. John Mandel,2022
+92,Trust,Hernan Diaz,2022
+93,Babel,R.F. Kuang,2022
+94,The Lincoln Highway,Amor Towles,2021
+95,Station Eleven,Emily St. John Mandel,2014
+96,The Fifth Season,N.K. Jemisin,2015
+97,Anxious People,Fredrik Backman,2019
+98,The Dispossessed,Ursula K. Le Guin,1974
+99,Neuromancer,William Gibson,1984
+100,Foundation,Isaac Asimov,1951
