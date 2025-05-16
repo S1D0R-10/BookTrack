@@ -228,7 +228,7 @@ void processMenuChoice(int choice, std::vector<Book>& books, std::string& filena
             clearScreen();
             std::cout << "Nieprawidłowy wybór. Spróbuj ponownie." << std::endl;
             // Display error message box using AppleScript
-            showErrorMessageBox("Nieprawidłowy wybór! Proszę wprowadzić liczbę od 0 do 9.");
+            showErrorMessageBox("Nieprawidłowy wybór z menu");
             waitForEnter();
             clearScreen();
     }
@@ -271,7 +271,7 @@ int main(int argc, char* argv[]) {
             std::cout << "Nieprawidłowy wybór. Spróbuj ponownie." << std::endl;
             
             // Display error message box using AppleScript
-            showErrorMessageBox("Nieprawidłowy wybór! Proszę wprowadzić liczbę od 0 do 9.");
+            showErrorMessageBox("Nieprawidłowy format danych - wprowadź liczbę");
             
             waitForEnter();
             choice = -1; // Set to invalid choice to continue loop
