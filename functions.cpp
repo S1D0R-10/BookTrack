@@ -8,7 +8,6 @@
 
 namespace BookManager {
 
-    
     void addBook(std::vector<Book>& books) {
         if (books.size() >= MAX_BOOKS) {
             std::cout << "Maksymalna liczba książek została osiągnięta." << std::endl;
@@ -16,7 +15,6 @@ namespace BookManager {
         }
 
         Book newBook;
-        
         
         newBook.id = generateUniqueId(books);
         
@@ -136,33 +134,27 @@ namespace BookManager {
     
     std::cout << "\n==== Lista wszystkich książek (" << books.size() << ") ====\n" << std::endl;
     
-    // Print header with simple fixed-width columns
     std::cout << std::left;
     std::cout << std::setw(4) << "ID" << " | ";
     std::cout << std::setw(35) << "Tytuł" << " | ";
     std::cout << std::setw(30) << "Autor" << " | ";
     std::cout << "Rok" << std::endl;
     
-    // Print separator line
     std::cout << std::string(80, '-') << std::endl;
     
-    // Print each book
     for (const auto& book : books) {
         displayBook(book);
     }
     
-    // Print bottom border
     std::cout << std::string(80, '-') << std::endl;
 }
     
     
     void displayBook(const Book& book) {
-    // Very simple fixed-width display
     std::cout << std::left;
     std::cout << std::setw(4) << book.id;
     std::cout << " | ";
     
-    // Title with truncation if needed
     if (book.title.length() > 30) {
         std::cout << book.title.substr(0, 27) << "...";
     } else {
@@ -171,7 +163,6 @@ namespace BookManager {
     std::cout << std::string(35 - std::min(30, (int)book.title.length()), ' ');
     std::cout << " | ";
     
-    // Author with truncation if needed
     if (book.author.length() > 25) {
         std::cout << book.author.substr(0, 22) << "...";
     } else {
@@ -180,7 +171,6 @@ namespace BookManager {
     std::cout << std::string(30 - std::min(25, (int)book.author.length()), ' ');
     std::cout << " | ";
     
-    // Year
     std::cout << book.yearOfPublication;
     
     std::cout << std::endl;
@@ -220,7 +210,6 @@ namespace BookManager {
             std::transform(bookTitleLower.begin(), bookTitleLower.end(), bookTitleLower.begin(), ::tolower);
             std::transform(searchTitleLower.begin(), searchTitleLower.end(), searchTitleLower.begin(), ::tolower);
             
-            
             if (bookTitleLower.find(searchTitleLower) != std::string::npos) {
                 results.push_back(book);
             }
@@ -235,7 +224,6 @@ namespace BookManager {
             return;
         }
         
-        
         bool swapped;
         for (size_t i = 0; i < books.size() - 1; ++i) {
             swapped = false;
@@ -249,12 +237,10 @@ namespace BookManager {
                 std::transform(title2.begin(), title2.end(), title2.begin(), ::tolower);
                 
                 if (title1 > title2) {
-                    
                     std::swap(books[j], books[j + 1]);
                     swapped = true;
                 }
             }
-            
             
             if (!swapped) {
                 break;
@@ -275,7 +261,7 @@ namespace BookManager {
         
         books.clear();
         
-        // Determine file format based on extension
+
         bool isCsv = false;
         size_t dotPos = filename.find_last_of('.');
         if (dotPos != std::string::npos) {
@@ -292,16 +278,16 @@ namespace BookManager {
             Book book;
             
             if (isCsv) {
-                // CSV format: ID,Title,Author,Year
+
                 std::string idStr, yearStr;
                 
-                // Read each field separated by commas
+
                 if (!std::getline(iss, idStr, ',')) continue;
                 if (!std::getline(iss, book.title, ',')) continue;
                 if (!std::getline(iss, book.author, ',')) continue;
                 if (!std::getline(iss, yearStr)) continue;
                 
-                // Trim whitespace from all fields
+
                 idStr.erase(0, idStr.find_first_not_of(" \t"));
                 idStr.erase(idStr.find_last_not_of(" \t") + 1);
                 
@@ -322,7 +308,6 @@ namespace BookManager {
                     continue;
                 }
             } else {
-                // TXT format: ID | Title | Author | Year
                 if (!(iss >> book.id)) continue;
                 
                 char delimiter;
@@ -332,7 +317,6 @@ namespace BookManager {
                 std::getline(iss, book.author, '|');
                 iss >> book.yearOfPublication;
                 
-                // Trim whitespace from title and author
                 book.title.erase(0, book.title.find_first_not_of(" \t"));
                 book.title.erase(book.title.find_last_not_of(" \t") + 1);
                 
@@ -358,7 +342,6 @@ namespace BookManager {
             return false;
         }
         
-        // Determine file format based on extension
         bool isCsv = false;
         size_t dotPos = filename.find_last_of('.');
         if (dotPos != std::string::npos) {
@@ -369,10 +352,8 @@ namespace BookManager {
         
         for (const auto& book : books) {
             if (isCsv) {
-                // CSV format: ID,Title,Author,Year
                 file << book.id << "," << book.title << "," << book.author << "," << book.yearOfPublication << std::endl;
             } else {
-                // TXT format: ID | Title | Author | Year
                 file << book.id << " | " << book.title << " | " << book.author << " | " << book.yearOfPublication << std::endl;
             }
         }

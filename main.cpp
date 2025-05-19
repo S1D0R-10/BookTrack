@@ -5,23 +5,19 @@
 #include <string>
 #include <limits>
 #include <iomanip>
-#include <cstdlib> // For system()
+#include <cstdlib>
 
 using namespace BookManager;
 
-// Funkcja do czyszczenia bufora wejściowego
 void clearInputBuffer() {
     std::cin.clear();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
-// Funkcja do czyszczenia ekranu (kompatybilna z macOS)
 void clearScreen() {
-    // Sekwencja ANSI do czyszczenia ekranu i przesunięcia kursora na początek
     std::cout << "\033[2J\033[1;1H" << std::flush;
 }
 
-// Funkcja do wyświetlania menu
 void displayMenu() {
     std::cout << "\n===== BookBase - Menedżer książek =====\n" << std::endl;
     std::cout << "1. Wyświetl wszystkie książki" << std::endl;
@@ -37,13 +33,11 @@ void displayMenu() {
     std::cout << "\nWybierz opcję: ";
 }
 
-// Funkcja do wyświetlania okna dialogowego z błędem na macOS za pomocą AppleScript
 void showErrorMessageBox(const std::string& message) {
     std::string appleScriptCommand = "osascript -e 'display dialog \"" + message + "\" buttons {\"OK\"} with icon stop with title \"Błąd BookBase\"'";
     system(appleScriptCommand.c_str());
 }
 
-// Prosta funkcja do zatrzymania programu i oczekiwania na Enter
 void waitForEnter() {
     std::cout << "\nNaciśnij Enter, aby powrócić do menu..." << std::flush;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -55,21 +49,21 @@ void processMenuChoice(int choice, std::vector<Book>& books, std::string& filena
     std::string title;
     
     switch (choice) {
-        case 1: // Wyświetl wszystkie książki
+        case 1:
             clearScreen();
             displayAllBooks(books);
             waitForEnter();
             clearScreen();
             break;
             
-        case 2: // Dodaj nową książkę
+        case 2:
             clearScreen();
             addBook(books);
             waitForEnter();
             clearScreen();
             break;
             
-        case 3: // Edytuj książkę
+        case 3:
             clearScreen();
             std::cout << "Podaj ID książki do edycji: ";
             std::cin >> id;
@@ -78,7 +72,7 @@ void processMenuChoice(int choice, std::vector<Book>& books, std::string& filena
             clearScreen();
             break;
             
-        case 4: // Usuń książkę
+        case 4:
             clearScreen();
             std::cout << "Podaj ID książki do usunięcia: ";
             std::cin >> id;
@@ -87,7 +81,7 @@ void processMenuChoice(int choice, std::vector<Book>& books, std::string& filena
             clearScreen();
             break;
             
-        case 5: // Wyszukaj książkę po ID
+        case 5:
             clearScreen();
             std::cout << "Podaj ID książki do wyszukania: ";
             std::cin >> id;
@@ -96,14 +90,12 @@ void processMenuChoice(int choice, std::vector<Book>& books, std::string& filena
                 if (result) {
                     std::cout << "\nZnaleziona książka:\n" << std::endl;
                     
-                    // Print header with simple fixed-width columns
                     std::cout << std::left;
                     std::cout << std::setw(4) << "ID" << " | ";
                     std::cout << std::setw(35) << "Tytuł" << " | ";
                     std::cout << std::setw(30) << "Autor" << " | ";
                     std::cout << "Rok" << std::endl;
                     
-                    // Print separator line
                     std::cout << std::string(80, '-') << std::endl;
                     displayBook(*result);
                     std::cout << std::string(80, '-') << std::endl;
@@ -115,7 +107,7 @@ void processMenuChoice(int choice, std::vector<Book>& books, std::string& filena
             clearScreen();
             break;
             
-        case 6: // Wyszukaj książkę po tytule
+        case 6:
             clearScreen();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cout << "Podaj tytuł (lub fragment tytułu) książki do wyszukania: ";
@@ -126,21 +118,18 @@ void processMenuChoice(int choice, std::vector<Book>& books, std::string& filena
                 if (!results.empty()) {
                     std::cout << "\nZnalezione książki (" << results.size() << "):\n" << std::endl;
                     
-                    // Print header with simple fixed-width columns
                     std::cout << std::left;
                     std::cout << std::setw(4) << "ID" << " | ";
                     std::cout << std::setw(35) << "Tytuł" << " | ";
                     std::cout << std::setw(30) << "Autor" << " | ";
                     std::cout << "Rok" << std::endl;
                     
-                    // Print separator line
                     std::cout << std::string(80, '-') << std::endl;
                     
                     for (const auto& book : results) {
                         displayBook(book);
                     }
                     
-                    // Print bottom border
                     std::cout << std::string(80, '-') << std::endl;
                 } else {
                     std::cout << "Nie znaleziono książek pasujących do tytułu \"" << title << "\"" << std::endl;
@@ -150,21 +139,20 @@ void processMenuChoice(int choice, std::vector<Book>& books, std::string& filena
             clearScreen();
             break;
             
-        case 7: // Sortuj książki alfabetycznie
+        case 7:
             clearScreen();
             sortBooksByTitle(books);
             waitForEnter();
             clearScreen();
             break;
             
-        case 8: // Zapisz do pliku
+        case 8:
             clearScreen();
             {
                 std::string saveFilename;
                 std::cout << "Podaj nazwę pliku do zapisu (Enter aby użyć domyślnej nazwy \"" << filename << "\") [.txt lub .csv]:";
-                // Check if there's already a newline character in the buffer
                 if (std::cin.peek() == '\n') {
-                    std::cin.get(); // Remove just the newline
+                    std::cin.get();
                 } else {
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 }
@@ -180,13 +168,13 @@ void processMenuChoice(int choice, std::vector<Book>& books, std::string& filena
             clearScreen();
             break;
             
-        case 9: // Wczytaj z pliku
+        case 9:
             clearScreen();
             {
                 std::string loadFilename;
                 std::cout << "Podaj nazwę pliku do wczytania (Enter aby użyć domyślnej nazwy \"" << filename << "\") [.txt lub .csv]:";
                 if (std::cin.peek() == '\n') {
-                    std::cin.get(); // Remove just the newline
+                    std::cin.get();
                 } else {
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 }
@@ -198,7 +186,7 @@ void processMenuChoice(int choice, std::vector<Book>& books, std::string& filena
                 
                 if (loadBooksFromFile(books, loadFilename)) {
                     if (!loadFilename.empty()) {
-                        filename = loadFilename; // Update the current filename if successful
+                        filename = loadFilename;
                     }
                 }
             }
@@ -206,7 +194,7 @@ void processMenuChoice(int choice, std::vector<Book>& books, std::string& filena
             clearScreen();
             break;
             
-        case 0: // Wyjście
+        case 0:
             clearScreen();
             std::cout << "Czy chcesz zapisać zmiany przed wyjściem? (t/n): ";
             char saveChoice;
@@ -218,16 +206,14 @@ void processMenuChoice(int choice, std::vector<Book>& books, std::string& filena
             
             std::cout << "Do widzenia!" << std::endl;
             
-            // Czekaj na Enter przed wyjściem
             std::cout << "\nNaciśnij Enter, aby zakończyć..." << std::flush;
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cin.get();
             break;
             
-        default: // Nieprawidłowy wybór
+        default:
             clearScreen();
             std::cout << "Nieprawidłowy wybór. Spróbuj ponownie." << std::endl;
-            // Display error message box using AppleScript
             showErrorMessageBox("Nieprawidłowy wybór z menu");
             waitForEnter();
             clearScreen();
@@ -235,11 +221,10 @@ void processMenuChoice(int choice, std::vector<Book>& books, std::string& filena
 }
 
 int main(int argc, char* argv[]) {
-    // Czyszczenie ekranu na początku programu
     clearScreen();
     
     std::vector<Book> books;
-    std::string filename = "books.txt"; // Domyślnie używamy formatu TXT
+    std::string filename = "books.txt";
     
     
     if (argc > 1) {
@@ -260,28 +245,21 @@ int main(int argc, char* argv[]) {
     int choice;
     
     do {
-        // Always display the menu first
         displayMenu();
         
-        // Get user choice
         if (!(std::cin >> choice)) {
-            // Handle invalid input (non-numeric)
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cout << "Nieprawidłowy wybór. Spróbuj ponownie." << std::endl;
             
-            // Display error message box using AppleScript
             showErrorMessageBox("Nieprawidłowy format danych - wprowadź liczbę");
             
             waitForEnter();
-            choice = -1; // Set to invalid choice to continue loop
+            choice = -1;
             continue;
         }
         
-        // Process the menu choice
         processMenuChoice(choice, books, filename);
-        
-        // We'll handle pauses in the processMenuChoice function instead
         
     } while (choice != 0);
     
