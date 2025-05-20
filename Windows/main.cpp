@@ -6,7 +6,8 @@
 #include <limits>
 #include <iomanip>
 #include <cstdlib>
-#include <algorithm> 
+#include <windows.h>
+#include <algorithm>  // Dodaję nagłówek dla std::min
 
 using namespace BookManager;
 
@@ -16,7 +17,21 @@ void clearInputBuffer() {
 }
 
 void clearScreen() {
+#ifdef _WIN32
+    // Metoda z użyciem Windows API
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    COORD coordScreen = {0, 0};
+    DWORD cCharsWritten;
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    GetConsoleScreenBufferInfo(hConsole, &csbi);
+    DWORD dwConSize = csbi.dwSize.X * csbi.dwSize.Y;
+    FillConsoleOutputCharacter(hConsole, ' ', dwConSize, coordScreen, &cCharsWritten);
+    FillConsoleOutputAttribute(hConsole, csbi.wAttributes, dwConSize, coordScreen, &cCharsWritten);
+    SetConsoleCursorPosition(hConsole, coordScreen);
+#else
+    // Metoda z użyciem sekwencji ANSI dla macOS/Linux
     std::cout << "\033[2J\033[1;1H" << std::flush;
+#endif
 }
 
 void displayMenu() {
@@ -35,8 +50,19 @@ void displayMenu() {
 }
 
 void showErrorMessageBox(const std::string& message) {
+#ifdef _WIN32
+    // Konwersja std::string (UTF-8) na std::wstring (UTF-16) dla poprawnej obsługi polskich znaków
+    int size_needed = MultiByteToWideChar(CP_UTF8, 0, message.c_str(), -1, NULL, 0);
+    std::wstring wmessage(size_needed, 0);
+    MultiByteToWideChar(CP_UTF8, 0, message.c_str(), -1, &wmessage[0], size_needed);
+    
+    // Używamy MessageBoxW zamiast MessageBoxA dla wsparcia Unicode
+    MessageBoxW(NULL, wmessage.c_str(), L"Błąd BookBase", MB_OK | MB_ICONERROR);
+#else
+    // Wersja dla macOS używająca AppleScript
     std::string appleScriptCommand = "osascript -e 'display dialog \"" + message + "\" buttons {\"OK\"} with icon stop with title \"Błąd BookBase\"'";
     system(appleScriptCommand.c_str());
+#endif
 }
 
 void waitForEnter() {
@@ -222,6 +248,12 @@ void processMenuChoice(int choice, std::vector<Book>& books, std::string& filena
 }
 
 int main(int argc, char* argv[]) {
+#ifdef _WIN32
+    // Ustawienie polskich znaków w konsoli Windows
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+#endif
+    
     clearScreen();
     
     std::vector<Book> books;
